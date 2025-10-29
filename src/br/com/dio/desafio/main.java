@@ -1,65 +1,64 @@
 package br.com.dio.desafio;
 import java.time.LocalDate;
 
-import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.Jogo;
+import br.com.dio.desafio.dominio.Missao;
+import br.com.dio.desafio.dominio.Personagem;
+import br.com.dio.desafio.dominio.Evento;
 
 public class main {
     
     public static void main(String[] args) {
-        Curso curso1 = new Curso();
-        curso1.setTitulo("curso java");
-        curso1.setDescricao("descricao curso java");
-        curso1.setCargaHoraria(8);
+        
+        Missao missao1 = new Missao();
+        missao1.setTitulo("Missão Principal: O Encontro");
+        missao1.setDescricao("Rastreie seu rival até o covil escondido.");
+        missao1.setTotalAtividades(8);
 
-        Curso curso2 = new Curso();
-        curso2.setTitulo("curso javascript");
-        curso2.setDescricao("descricao curso javascript");
-        curso2.setCargaHoraria(4);
+        Missao missao2 = new Missao();
+        missao2.setTitulo("Missão Secundária: O Julgamento");
+        missao2.setDescricao("Reúna evidências.");
+        missao2.setTotalAtividades(4);
 
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria java");
-        mentoria.setDescricao("descricao mentoria java");
-        mentoria.setData(LocalDate.now());
+        Evento evento = new Evento();
+        evento.setTitulo("Evento Especial: Visão do Clero");
+        evento.setDescricao("Receba insights sobre a caçada.");
+        evento.setData(LocalDate.now());
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
+        Jogo jogo = new Jogo();
+        jogo.setNome("Malleus Maleficarum");
+        jogo.setDescricao("RPG inspirado na época da Inquisição e a luta contra a bruxaria");
+        
+        jogo.getConteudos().add(missao1);
+        jogo.getConteudos().add(missao2);
+        jogo.getConteudos().add(evento);
 
-        Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        Personagem playerMaria = new Personagem();
+        playerMaria.setNome("Maria, A Bruxa");
+        
+        playerMaria.iniciarJogo(jogo); 
+        
+        System.out.println("Missões Ativas de " + playerMaria.getNome() + playerMaria.getMissoesAtivas());
+        playerMaria.progredir();
+        playerMaria.progredir();
+        System.out.println("------"); 
+        System.out.println("Missões Ativas de " + playerMaria.getNome() + playerMaria.getMissoesAtivas());
+        System.out.println("Missões Concluídas de " + playerMaria.getNome() + playerMaria.getMissoesConcluidas());
+        System.out.println("XP Total:" + playerMaria.calcularScoreTotal());
 
-        Dev devMaria = new Dev();
-        devMaria.setNome("Maria");
-        devMaria.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Maria:" + devMaria.getConteudosInscritos());
-        devMaria.progredir();
-        devMaria.progredir();
-        System.out.println("-");        
-        System.out.println("Conteúdos Inscritos Maria:" + devMaria.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Maria:" + devMaria.getConteudosConcluidos());
-        System.out.println("XP:" + devMaria.calcularXp());
+        System.out.println("------------");
 
-        System.out.println("---------");
+        Personagem playerJoao = new Personagem();
+        playerJoao.setNome("João, O Inquisitor"); 
+        playerJoao.iniciarJogo(jogo);
 
-        Dev devJoao = new Dev();
-        devJoao.setNome("Joao");
-        devJoao.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        devJoao.progredir();
-        devJoao.progredir();
-        devJoao.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos João:" + devJoao.getConteudosConcluidos());
-        System.out.println("XP:" + devJoao.calcularXp());
-
+        System.out.println("Missões Ativas de " + playerJoao.getNome() + playerJoao.getMissoesAtivas());
+        playerJoao.progredir();
+        playerJoao.progredir();
+        playerJoao.progredir();
+        System.out.println("------");
+        System.out.println("Missões Ativas de " + playerJoao.getNome() + playerJoao.getMissoesAtivas());
+        System.out.println("Missões Concluídas de " + playerJoao.getNome() + playerJoao.getMissoesConcluidas());
+        System.out.println("XP Total:" + playerJoao.calcularScoreTotal());
     }
-
 }
